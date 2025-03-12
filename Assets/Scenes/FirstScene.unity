@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 529367293}
   - component: {fileID: 529367292}
   - component: {fileID: 529367291}
+  - component: {fileID: 529367295}
   m_Layer: 0
   m_Name: RedBase
   m_TagString: Untagged
@@ -488,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b304d13e6f2044299d71f0c387b18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BillionType: {fileID: 4475061984929322246, guid: 1d337e1ed3c2acc4faa77a407c374d70, type: 3}
+  BillionType: {fileID: 6690600929667331409, guid: c920f92814354dd41bd11525c164cad8, type: 3}
 --- !u!58 &529367292
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -595,6 +596,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6707323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &529367295
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529367290}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &626710784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b304d13e6f2044299d71f0c387b18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BillionType: {fileID: 4475061984929322246, guid: 82f74ae712e5ed94d98e5a694f0854fb, type: 3}
+  BillionType: {fileID: 6690600929667331409, guid: 8e783fc38e4b64149941994ac0dcfb63, type: 3}
 --- !u!212 &681069921
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3009,7 +3037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b304d13e6f2044299d71f0c387b18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BillionType: {fileID: 4475061984929322246, guid: 336efb1cc3489d4409c335762a9549e1, type: 3}
+  BillionType: {fileID: 6690600929667331409, guid: 33fd003086ab5e949a65a456013e2eb6, type: 3}
 --- !u!212 &984745632
 SpriteRenderer:
   m_ObjectHideFlags: 0
