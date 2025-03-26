@@ -28,6 +28,7 @@ public class BillionBehavior : MonoBehaviour
     {
         MoveToFlag();
         DamageDebugInput();
+        FindNearestTarget();
     }
 
     void MoveToFlag()
@@ -62,6 +63,36 @@ public class BillionBehavior : MonoBehaviour
         {
             rb2d.AddForce(testVector * moveSpeed);
         }
+    }
+
+    void FindNearestTarget()
+    {
+        // largely found from https://stackoverflow.com/questions/33145365/what-is-the-most-effective-way-to-get-closest-target and
+        // https://discussions.unity.com/t/how-do-i-rotate-a-2d-object-to-face-another-object/187072
+        GameObject[] billions = GameObject.FindGameObjectsWithTag("Billion");
+        GameObject closest = null;
+        float d = Mathf.Infinity;
+        foreach(GameObject billion in billions)
+        {
+            BillionBehavior bb = billion.GetComponent<BillionBehavior>();
+            if (!bb.BillionColor.Equals(BillionColor)) // hopefully this translates to it ignoring billions of the same color
+            {
+                Vector3 diff = billion.transform.position - transform.position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < d)
+                {
+                    closest = billion;
+                    d = curDistance;
+                }
+            } 
+        }
+
+        Vector3 target = closest.transform.position;
+        target.x -= transform.position.x;
+        target.y -= transform.position.y;
+        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+
     }
 
     void takeDamage(int damage)
