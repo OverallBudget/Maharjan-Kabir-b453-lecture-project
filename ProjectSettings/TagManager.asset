@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Flag
   - Billion
+  - Wall
   layers:
   - Default
   - TransparentFX

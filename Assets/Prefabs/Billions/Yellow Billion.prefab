@@ -344,3 +344,4 @@ MonoBehaviour:
   BillionColor: yellow
   moveSpeed: 1
   BillionImage: {fileID: 870426610192292624}
+  Bullet: {fileID: 3327323433730173351, guid: f9f2193adbcc7c94ba5cf66783160cf0, type: 3}

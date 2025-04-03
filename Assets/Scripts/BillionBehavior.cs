@@ -5,23 +5,26 @@ using System.Collections.Generic;
 
 public class BillionBehavior : MonoBehaviour
 {
-    [SerializeField] string BillionColor;
+    [SerializeField] public string BillionColor;
     [SerializeField] float moveSpeed;
     [SerializeField] GameObject BillionImage;
+    [SerializeField] GameObject Bullet;
     Rigidbody2D rb2d;
     List<GameObject> flagList;
 
     Vector3 objectPos;
     Vector3 testVector;
     FlagPlacing flagPlacing;
-    string colorType;
     int HP = 100;
 
     UnityEvent debugDamageEvent = new UnityEvent();
-    private void Start()
+    UnityEvent shootTime = new UnityEvent();
+
+    void Start()
     {
         flagPlacing = GameObject.FindGameObjectWithTag("GameController").GetComponent<FlagPlacing>();
         debugDamageEvent.AddListener(DamageDebug);
+        shootTime.AddListener(ShootBullet);
         rb2d = GetComponent<Rigidbody2D>();
     }
     void Update()
@@ -91,11 +94,11 @@ public class BillionBehavior : MonoBehaviour
         target.x -= transform.position.x;
         target.y -= transform.position.y;
         float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90)); // idk why adding -90 makes it work but it does
 
     }
 
-    void takeDamage(int damage)
+    public void takeDamage(int damage)
     {
         if(BillionImage != null) // temp
         {
@@ -133,5 +136,11 @@ public class BillionBehavior : MonoBehaviour
     void DamageDebug()
     {
         takeDamage(25);
+    }
+
+    public void ShootBullet()
+    {
+        GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
+        bullet.GetComponent<BulletBehavior>().bC = BillionColor;
     }
 }

@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 626710786}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3181,6 +3181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999468478}
   - component: {fileID: 999468477}
+  - component: {fileID: 999468479}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -3219,6 +3220,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999468479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999468476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9dfc3f171d3d545a80cc1fd30860d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136046799
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,7 +3244,7 @@ GameObject:
   - component: {fileID: 1136046800}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3488,7 +3501,7 @@ GameObject:
   - component: {fileID: 1774677463}
   m_Layer: 0
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
