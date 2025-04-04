@@ -16,6 +16,7 @@ public class BillionBehavior : MonoBehaviour
     Vector3 testVector;
     FlagPlacing flagPlacing;
     int HP = 100;
+    public Vector3 target;
 
     UnityEvent debugDamageEvent = new UnityEvent();
     UnityEvent shootTime = new UnityEvent();
@@ -90,12 +91,14 @@ public class BillionBehavior : MonoBehaviour
             } 
         }
 
-        Vector3 target = closest.transform.position;
+        target = closest.transform.position;
         target.x -= transform.position.x;
         target.y -= transform.position.y;
         float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90)); // idk why adding -90 makes it work but it does
-
+        // revert in order to make shoot work
+        target.x += transform.position.x;
+        target.y += transform.position.y;
     }
 
     public void takeDamage(int damage)
@@ -140,7 +143,13 @@ public class BillionBehavior : MonoBehaviour
 
     public void ShootBullet()
     {
-        GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
-        bullet.GetComponent<BulletBehavior>().bC = BillionColor;
+        Vector3 diff = transform.position - target;
+        float curDiff = diff.sqrMagnitude;
+        Debug.Log(BillionColor + " " + curDiff);
+        if (curDiff < 10f)
+        {
+            GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
+            bullet.GetComponent<BulletBehavior>().bC = BillionColor;
+        }
     }
 }

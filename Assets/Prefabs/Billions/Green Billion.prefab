@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BillionColor: green
-  moveSpeed: 1
+  moveSpeed: 3
   BillionImage: {fileID: 870426610192292624}
   Bullet: {fileID: 1871091407427747540, guid: c9fe89c24c492344bb37959273113f10, type: 3}
 --- !u!1 &8492551046805364129
