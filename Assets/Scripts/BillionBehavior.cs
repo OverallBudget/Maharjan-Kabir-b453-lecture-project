@@ -145,7 +145,7 @@ public class BillionBehavior : MonoBehaviour
     {
         Vector3 diff = transform.position - target;
         float curDiff = diff.sqrMagnitude;
-        Debug.Log(BillionColor + " " + curDiff);
+        //Debug.Log(BillionColor + " " + curDiff);
         if (curDiff < 10f)
         {
             GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);

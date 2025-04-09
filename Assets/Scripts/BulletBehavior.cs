@@ -45,7 +45,7 @@ public class BulletBehavior : MonoBehaviour
             Debug.Log("Found Billion");
             if (!other.GetComponent<BillionBehavior>().BillionColor.Equals(bulletColor))
             {
-                Debug.Log(bulletColor + " colliding with " + other.GetComponent<BillionBehavior>().BillionColor);
+                //Debug.Log(bulletColor + " colliding with " + other.GetComponent<BillionBehavior>().BillionColor);
                 other.GetComponent<BillionBehavior>().takeDamage(damage);
                 Destroy(gameObject);
             }
