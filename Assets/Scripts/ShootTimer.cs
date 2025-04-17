@@ -35,7 +35,7 @@ public class ShootTimer : MonoBehaviour
         timer += Time.deltaTime;
         if(timer > 1f)
         {
-            Debug.Log("reset time");
+            //Debug.Log("reset time");
             timer = 0f;
             GameObject[] go = GameObject.FindGameObjectsWithTag("Billion");
             foreach(GameObject bill in go)
@@ -50,7 +50,7 @@ public class ShootTimer : MonoBehaviour
         otherTimer += Time.deltaTime;
         if (otherTimer > 3f)
         {
-            Debug.Log("reset slowtime");
+            //Debug.Log("reset slowtime");
             otherTimer = 0f;
             GameObject[] go = GameObject.FindGameObjectsWithTag("Base");
             foreach (GameObject b in go)

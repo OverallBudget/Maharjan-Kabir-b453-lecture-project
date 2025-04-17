@@ -27,33 +27,39 @@ public class BaseBehavior : MonoBehaviour
         // https://discussions.unity.com/t/how-do-i-rotate-a-2d-object-to-face-another-object/187072
         GameObject[] billions = GameObject.FindGameObjectsWithTag("Billion");
         GameObject closest = null;
-        float d = Mathf.Infinity;
-        foreach (GameObject billion in billions)
+
+        if(billions.Length != 0)
         {
-            BillionBehavior bb = billion.GetComponent<BillionBehavior>();
-            if (!bb.BillionColor.Equals(BaseColor)) // hopefully this translates to it ignoring billions of the same color
+            Debug.Log(billions.Length);
+            float d = Mathf.Infinity;
+            foreach (GameObject billion in billions)
             {
-                Vector3 diff = billion.transform.position - transform.position;
-                float curDistance = diff.sqrMagnitude;
-                if (curDistance < d)
+                BillionBehavior bb = billion.GetComponent<BillionBehavior>();
+                if (!bb.BillionColor.Equals(BaseColor)) // hopefully this translates to it ignoring billions of the same color
                 {
-                    closest = billion;
-                    d = curDistance;
+                    Vector3 diff = billion.transform.position - transform.position;
+                    float curDistance = diff.sqrMagnitude;
+                    if (curDistance < d)
+                    {
+                        closest = billion;
+                        d = curDistance;
+                    }
                 }
             }
-        }
-        target = closest.transform.position;
-        target.x -= transform.position.x;
-        target.y -= transform.position.y;
-        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
-        // transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); // idk why adding -90 makes it work but it does
-        // revert in order to make shoot work
-        Quaternion endRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-        transform.rotation = Quaternion.Lerp(transform.rotation, endRotation, rotationSpeed * Time.deltaTime);
+            target = closest.transform.position;
+            target.x -= transform.position.x;
+            target.y -= transform.position.y;
+            float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+            // transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); // idk why adding -90 makes it work but it does
+            // revert in order to make shoot work
+            Quaternion endRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+            transform.rotation = Quaternion.Lerp(transform.rotation, endRotation, rotationSpeed * Time.deltaTime);
 
-        //why is the error showing here, but does nothing
-        target.x += transform.position.x;
-        target.y += transform.position.y;
+            //why is the error showing here, but does nothing
+            target.x += transform.position.x;
+            target.y += transform.position.y;
+        }
+        
     }
 
     public void ShootLaser()

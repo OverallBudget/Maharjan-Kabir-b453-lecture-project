@@ -17,6 +17,7 @@ public class BillionBehavior : MonoBehaviour
     FlagPlacing flagPlacing;
     int HP = 100;
     public Vector3 target;
+    bool foundBase;
 
     UnityEvent debugDamageEvent = new UnityEvent();
     UnityEvent shootTime = new UnityEvent();
@@ -71,12 +72,16 @@ public class BillionBehavior : MonoBehaviour
 
     void FindNearestTarget()
     {
+
         // largely found from https://stackoverflow.com/questions/33145365/what-is-the-most-effective-way-to-get-closest-target and
         // https://discussions.unity.com/t/how-do-i-rotate-a-2d-object-to-face-another-object/187072
-        GameObject[] billions = GameObject.FindGameObjectsWithTag("Billion");
+
         GameObject closest = null;
         float d = Mathf.Infinity;
-        foreach(GameObject billion in billions)
+
+        // with this order, it should prioritize the base 
+        GameObject[] billions = GameObject.FindGameObjectsWithTag("Billion");
+        foreach (GameObject billion in billions)
         {
             BillionBehavior bb = billion.GetComponent<BillionBehavior>();
             if (!bb.BillionColor.Equals(BillionColor)) // hopefully this translates to it ignoring billions of the same color
@@ -88,7 +93,23 @@ public class BillionBehavior : MonoBehaviour
                     closest = billion;
                     d = curDistance;
                 }
-            } 
+            }
+        }
+
+        GameObject[] bases = GameObject.FindGameObjectsWithTag("Base");
+        foreach (GameObject b in bases)
+        {
+            BillionBase bb = b.GetComponent<BillionBase>();
+            if (!bb.color.Equals(BillionColor)) // hopefully this translates to it ignoring billions of the same color
+            {
+                Vector3 diff = b.transform.position - transform.position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < d)
+                {
+                    closest = b;
+                    d = curDistance;
+                }
+            }
         }
 
         target = closest.transform.position;

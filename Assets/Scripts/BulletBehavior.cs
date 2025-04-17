@@ -40,6 +40,16 @@ public class BulletBehavior : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (other.CompareTag("Base"))
+        {
+            if (!other.GetComponent<BillionBase>().color.Equals(bulletColor))
+            {
+                //Debug.Log(bulletColor + " colliding with " + other.GetComponent<BillionBehavior>().BillionColor);
+                other.GetComponent<BillionBase>().takeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+
         if (other.CompareTag("Billion"))
         {
             Debug.Log("Found Billion");
