@@ -4,6 +4,7 @@ public class BulletBehavior : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] int damage;
+    [SerializeField] public int level;
 
     [SerializeField] string bulletColor;
     public string bC
@@ -20,7 +21,7 @@ public class BulletBehavior : MonoBehaviour
 
     void Start()
     {
-
+        damage = damage + 15 * level;
     }
 
     void Update()
@@ -55,8 +56,10 @@ public class BulletBehavior : MonoBehaviour
             Debug.Log("Found Billion");
             if (!other.GetComponent<BillionBehavior>().BillionColor.Equals(bulletColor))
             {
+                
                 //Debug.Log(bulletColor + " colliding with " + other.GetComponent<BillionBehavior>().BillionColor);
                 other.GetComponent<BillionBehavior>().takeDamage(damage);
+                other.GetComponent<BillionBehavior>().deathCause(bulletColor);
                 Destroy(gameObject);
             }
         }

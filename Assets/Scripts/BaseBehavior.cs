@@ -30,7 +30,7 @@ public class BaseBehavior : MonoBehaviour
 
         if(billions.Length != 0)
         {
-            Debug.Log(billions.Length);
+            //Debug.Log(billions.Length);
             float d = Mathf.Infinity;
             foreach (GameObject billion in billions)
             {
@@ -65,7 +65,7 @@ public class BaseBehavior : MonoBehaviour
     public void ShootLaser()
     {
 
-        Debug.Log("Shooting Laser");
+        //Debug.Log("Shooting Laser");
         Vector3 diff = transform.position - target;
         float curDiff = diff.sqrMagnitude;
         //Debug.Log(BaseColor + " " + curDiff);
@@ -75,4 +75,5 @@ public class BaseBehavior : MonoBehaviour
             bullet.GetComponent<BulletBehavior>().bC = BaseColor;
         }
     }
+
 }

@@ -47,15 +47,17 @@ public class ShootTimer : MonoBehaviour
 
     void SlowTimerThing()
     {
+        Debug.Log("Test");
         otherTimer += Time.deltaTime;
         if (otherTimer > 3f)
         {
             //Debug.Log("reset slowtime");
             otherTimer = 0f;
             GameObject[] go = GameObject.FindGameObjectsWithTag("Base");
+            
             foreach (GameObject b in go)
             {
-                b.GetComponent<BaseBehavior>().ShootLaser();
+                b.GetComponentInChildren<BaseBehavior>().ShootLaser();
             }
         }
     }

@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class BillionBehavior : MonoBehaviour
 {
@@ -16,8 +17,10 @@ public class BillionBehavior : MonoBehaviour
     Vector3 testVector;
     FlagPlacing flagPlacing;
     int HP = 100;
+    public int level;
     public Vector3 target;
     bool foundBase;
+    bool isDead;
 
     UnityEvent debugDamageEvent = new UnityEvent();
     UnityEvent shootTime = new UnityEvent();
@@ -28,6 +31,7 @@ public class BillionBehavior : MonoBehaviour
         debugDamageEvent.AddListener(DamageDebug);
         shootTime.AddListener(ShootBullet);
         rb2d = GetComponent<Rigidbody2D>();
+        HP = HP + level * 20; 
     }
     void Update()
     {
@@ -142,13 +146,29 @@ public class BillionBehavior : MonoBehaviour
                     BillionImage.transform.localScale *= 0.9f;
                     break; // 25% - 1%
                 case (<= 0):
-                    Destroy(gameObject);
+                    isDead = true;
                     break;
             }
         }
         
     }
 
+    public void deathCause(string BulletColor)
+    {
+        if (isDead)
+        {
+            GameObject[] bases = GameObject.FindGameObjectsWithTag("Base");
+            foreach (GameObject b in bases)
+            {
+                BillionBase bb = b.GetComponent<BillionBase>();
+                if (bb.color.Equals(BulletColor)) // hopefully this translates to it ignoring billions of the same color
+                {
+                    bb.expUp();
+                }
+            }
+            Destroy(gameObject);
+        }
+    }
     void DamageDebugInput()
     {
         if (Input.GetMouseButtonDown(2))
@@ -171,6 +191,9 @@ public class BillionBehavior : MonoBehaviour
         {
             GameObject bullet = Instantiate(Bullet, transform.position, transform.rotation);
             bullet.GetComponent<BulletBehavior>().bC = BillionColor;
+            bullet.GetComponent<BulletBehavior>().level = level;
         }
     }
+
+    
 }
